@@ -14,6 +14,6 @@ class Poll < ActiveRecord::Base
     primary_key: :id
   )
 
-  validates :title, :author_id, presence: true, uniqueness: true
+  validates :title, :author_id, presence: true
 
 end

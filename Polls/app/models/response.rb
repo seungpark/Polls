@@ -22,6 +22,7 @@ class Response < ActiveRecord::Base
 
   validates :answer_choice_id, :user_id, presence: true
   validate :respondent_has_not_already_answered_question
+  validate :author_cannot_respond_to_own_poll
   #run a private validation with command 'validate'
 
   def sibling_responses
@@ -39,6 +40,14 @@ class Response < ActiveRecord::Base
     if sibling_responses.exists?(user_id: self.user_id)
       errors[:already_answered] << "You cannot answer the same question twice"
     end
+  end
+
+  def author_cannot_respond_to_own_poll
+    author_id = question.poll.author.id
+    if self.respondent.id == author_id
+      errors[:cannot_answer_own_poll] << "You cannot answer your own poll"
+    end
+
   end
   #this method runs before Response has been persisted into database
 
