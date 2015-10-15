@@ -8,6 +8,7 @@
 
 sp = User.create!(user_name: "SeungPark")
 jz = User.create!(user_name: "JimmyZeng")
+lr = User.create!(user_name: "LilyR")
 
 poll1 = Poll.create!(title: "Age", author_id: sp.id)
 poll2 = Poll.create!(title: "Height", author_id: jz.id)
@@ -29,3 +30,4 @@ answer5 = AnswerChoice.create!(answer_choice: "Well", question_id: question3.id)
 response1 = Response.create!(answer_choice_id: 1, user_id: 2)
 response2 = Response.create!(answer_choice_id: 3, user_id: 1)
 response3 = Response.create!(answer_choice_id: 5, user_id: 2)
+response4 = Response.create!(answer_choice_id: 1, user_id: 3)
