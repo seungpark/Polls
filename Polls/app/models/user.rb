@@ -15,5 +15,25 @@ class User < ActiveRecord::Base
 
   validates :user_name, presence: true, uniqueness: true
 
+  def completed_polls
+    Poll
+      .select("polls.*")
+      .joins(questions: :answer_choices)
+      .joins("LEFT OUTER JOIN (
+          SELECT *
+          FROM responses
+          WHERE #{self.id} = responses.user_id
+        ) AS user_responses
+        ON answer_choices.id = user_responses.answer_choice_id"
+      )
+      .group("polls.id")
+      .having("COUNT(DISTINCT questions.id) = COUNT(user_responses.id)")
+  end
+
+
+
+
+
+
 end
 #user has many authored polls
