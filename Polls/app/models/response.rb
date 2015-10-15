@@ -14,7 +14,17 @@ class Response < ActiveRecord::Base
     primary_key: :id
   )
 
+  has_one(
+    :question,
+    through: :answer_choice,
+    source: :question
+  )
+
   validates :answer_choice_id, :user_id, presence: true
+
+  def sibling_responses
+
+  end
 
 
 end
