@@ -24,3 +24,4 @@ answer4 = AnswerChoice.create!(answer_choice: "5 ft or over", question_id: quest
 
 response1 = Response.create!(answer_choice_id: 1, user_id: 2)
 response2 = Response.create!(answer_choice_id: 3, user_id: 1)
+response3 = Response.create!(answer_choice_id: 2, user_id: 1)
